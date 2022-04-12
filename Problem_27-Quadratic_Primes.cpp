@@ -1,12 +1,12 @@
-//
-//  Problem_27-Quadratic_Primes.cpp
-//  
-//
-//  Created by Martin Bobarshad on 1/13/22.
-//
+/*
+ Considering quadratics of the form:
+n^2 + an + b
+ , where |a| < 1000 and |b| <= 1000
 
-#include<stdio.h>
-#include<stdlib.h>
+ where  is the modulus/absolute value of
+ e.g.  and
+ Find the product of the coefficients, a  and b, for the quadratic expression that produces the maximum number of primes for consecutive values of n, starting with n = 0.
+ */
 #include <iostream>
 #include <cmath>
 using namespace std;
@@ -39,11 +39,7 @@ int main(){
     }
     cout << count << endl;
 }
-    
-
-
-
-
+  
 /*
 
  int main(){

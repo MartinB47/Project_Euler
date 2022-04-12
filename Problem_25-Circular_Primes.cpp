@@ -1,11 +1,29 @@
-#define _CRT_SECURE_NO_WARNINGS
-#include<stdio.h>
-#include<stdlib.h>
+/*
+ The Fibonacci sequence is defined by the recurrence relation:
+
+ Fn = Fn−1 + Fn−2, where F1 = 1 and F2 = 1.
+ Hence the first 12 terms will be:
+
+ F1 = 1
+ F2 = 1
+ F3 = 2
+ F4 = 3
+ F5 = 5
+ F6 = 8
+ F7 = 13
+ F8 = 21
+ F9 = 34
+ F10 = 55
+ F11 = 89
+ F12 = 144
+ The 12th term, F12, is the first term to contain three digits.
+
+ What is the index of the first term in the Fibonacci sequence to contain 1000 digits?
+ */
 #include <iostream>
 #include <time.h>
 #include <cmath>
 using namespace std;
-
 
 int CountDigits(int n) {
 	if (n == 0) return 1;
@@ -13,7 +31,6 @@ int CountDigits(int n) {
 	x = 1 + floor(log(abs(n)) / log(10));
 	return x;
 }
-
 
 void FindRotatingIntegers(int n) { //this code finds different rotations of a number (e.g. 267, 276, 726, 762)
 	int m;
@@ -33,16 +50,8 @@ void FindRotatingIntegers(int n) { //this code finds different rotations of a nu
 	cout << "The digits are : " << endl;
 	for (i = 0; i < m; i++) cout << i << " " << digits[i] << endl;
 
-
-
-
-
 	cout << endl << endl;
-
-
-
-
-
+    
 	int p, j, k;
 
 	for (i = 0; i < m; i++) {
@@ -57,9 +66,6 @@ void FindRotatingIntegers(int n) { //this code finds different rotations of a nu
 	}
 }
 
-
-
- 
 bool Prime(long long int num) {
 	bool flag = true;
 	for (long long int i = 2; i <= int(num / 2); i++) {
@@ -70,11 +76,6 @@ bool Prime(long long int num) {
 	}
 	return flag;
 }
-
-
-
-
-
 
 int main() {
 	FindRotatingIntegers(251);

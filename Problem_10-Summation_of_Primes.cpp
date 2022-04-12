@@ -1,8 +1,9 @@
-#include<stdio.h>
-#include<stdlib.h>
+/*
+ The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
+ Find the sum of all the primes below two million.
+*/
 #include <iostream>
 using namespace std;
-
 
 bool Prime(long long int num) {
 	if ((num % 10) == 5) return false;
@@ -11,7 +12,6 @@ bool Prime(long long int num) {
 	}
 	return true;
 }
-
 
 void sumprimes(int n) {
 	long long int sum = 0;
