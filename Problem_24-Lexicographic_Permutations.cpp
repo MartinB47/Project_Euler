@@ -1,19 +1,21 @@
-/*
- A permutation is an ordered arrangement of objects. For example, 3124 is one possible permutation of the digits 1, 2, 3 and 4. If all of the permutations are listed numerically or alphabetically, we call it lexicographic order. The lexicographic permutations of 0, 1 and 2 are:
-
- 012   021   102   120   201   210
-
- What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?*/
-#include<stdio.h>
-#include<stdlib.h>
 #include <iostream>
-#include <cmath>
+#include <algorithm>
+#include <vector>
 using namespace std;
 
-void lex(int n){
+int main() {
+    vector<int> nums;
+    for (int i = 0; i < 10; i++){
+        nums.push_back(i);
+    }
     
-}
+    for (int i = 0; i < 1000000 - 1; i++){
+        next_permutation(nums.begin(), nums.end());
+    }
+    
+    for (int num: nums){
+        cout << num;
+    }
 
-int main(){
-    cout << "Hello world" << endl;
+    return 0;
 }
