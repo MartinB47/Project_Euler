@@ -70,7 +70,6 @@ int main(){
     int count = 0;
     for (int i = 0; i < 10000; i++){
         if (isLychrel(initialize(i))){
-            cout << i << "\n";
             count++;
         }
     }
