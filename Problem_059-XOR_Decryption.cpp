@@ -22,21 +22,6 @@ bool is_english(const string &text, double threshold = 0.87){
     return (static_cast<double> (english) / text.size() >= threshold);
 }
 
-//function prototype
-void decrypt(const vector<int> &encrypted, int k, string key);
-
-int main(){
-    fstream infile("p059_cipher.txt");
-    string num;
-    vector<int> encrypted;
-    while (getline(infile, num, ',')){
-        encrypted.push_back(stoi(num));
-    }
-    infile.close();
-    
-    decrypt(encrypted, 3, "");
-}
-
 //generate keys of length k and decrypt the encrypted file into a string.
 void decrypt(const vector<int> &encrypted, int k, string key = ""){
     if (key.size() == k){
@@ -61,4 +46,16 @@ void decrypt(const vector<int> &encrypted, int k, string key = ""){
             decrypt(encrypted, k, key + ch);
         }
     }
+}
+
+int main(){
+    fstream infile("p059_cipher.txt");
+    string num;
+    vector<int> encrypted;
+    while (getline(infile, num, ',')){
+        encrypted.push_back(stoi(num));
+    }
+    infile.close();
+    
+    decrypt(encrypted, 3, "");
 }
