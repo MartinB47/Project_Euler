@@ -9,16 +9,11 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// generates all combinations indexes to be altered given  length of target
-// e.g. for n = 2, combinations = {{0}, {0,1}, {0,2}, {1}, {1,2}, {2}}
-void generate_combinations(vector<vector<int>> &combinations, vector<int> &current, int start, int n){
-    if (start == n){
-        return;
-    }
+// Function to generate all combinations of indexes to be altered given length of target
+// For n = 2, combinations = {{0}, {0,1}, {0,2}, {1}, {1,2}, {2}}
+void generate_combinations(vector<vector<int>> &combinations, vector<int> &current, int start, int n) {
     for (int i = start; i < n; ++i){
         current.push_back(i);
-        //skips sequence of size n
-        // e.g. for n = 3, {0,1,2} will be omitted.
         if (current.size() < n){
             combinations.push_back(current);
         }
@@ -27,34 +22,33 @@ void generate_combinations(vector<vector<int>> &combinations, vector<int> &curre
     }
 }
 
-// Sieve of Eratosthenes generates primes up to n.
-vector<bool> sieve(int n){
-    vector<bool> is_prime(n + 1, 1);
-    is_prime[0] = is_prime[1] = 0;
+// Function to generate primes up to n using Sieve of Eratosthenes
+vector<bool> sieve(int n) {
+    vector<bool> is_prime(n + 1, true);
+    is_prime[0] = is_prime[1] = false;
     for (int i = 2; i * i <= n; ++i){
         if (is_prime[i]){
             for (int j = i * i; j <= n; j += i){
-                is_prime[j] = 0;
+                is_prime[j] = false;
             }
         }
     }
     return is_prime;
 }
 
-
-int main(){
-    const int n = 1e6;
-    vector<bool> is_prime = sieve(n);
+int main() {
+    const int upperLimit = 1e6;
+    vector<bool> is_prime = sieve(upperLimit);
     
     int current_length = 1;
     vector<vector<int>> combinations;
     vector<int> current;
     generate_combinations(combinations, current, 0, current_length);
-    for (int p = 0; p < n + 1; ++p){
-        if (!is_prime[p]) continue;
-        string s = to_string(p);
-        int length = s.size();
-        //generate a new set of combinations with new digit count
+    for (int num = 0; num < upperLimit + 1; ++num){
+        if (!is_prime[num]) continue;
+        string numStr = to_string(num);
+        int length = numStr.size();
+        // Generate a new set of combinations with new digit count
         if (length > current_length){
             current_length = length;
             combinations.clear();
@@ -62,27 +56,24 @@ int main(){
             generate_combinations(combinations, current, 0, current_length);
         }
         
-        for (const auto &v: combinations){
-            //store the family of primes in a set.
+        for (const auto &combination: combinations){
             unordered_set<int> primes;
-            
-            //if we're changing the first digit, it can't be 0.
-            char start = (v[0] == 0) ? '1' : '0';
+            char start = (combination[0] == 0) ? '1' : '0';
             for (char ch = start; ch <= '9'; ++ch){
-                string t = s;
-                for (const int &d: v){
-                    t[d] = ch;
+                string temp = numStr;
+                for (const int &digit: combination){
+                    temp[digit] = ch;
                 }
-                int variation = stoi(t);
-                //add potential prime to family
+                int variation = stoi(temp);
+                // Add potential prime to family
                 if (is_prime[variation]){
                     primes.insert(variation);
                 }
             }
             
-            //checks for families of size 8, including p itself
-            if (primes.size() == 8 && primes.find(p) != primes.end()){
-                cout << p;
+            // Check for families of size 8, including num itself
+            if (primes.size() == 8 && primes.find(num) != primes.end()){
+                cout << num;
                 return 0;
             }
         }
